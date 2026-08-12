@@ -1,0 +1,12 @@
+node_modules/
+.claude/
+.env
+.env.*
+!.env.example
+keys.example.json
+debug_output.json
+deployment.json
+detailed-metrics-*.json
+spam-results-*.json
+dual-spam-results-*.json
+test-logs.json
