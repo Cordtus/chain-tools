@@ -1,4 +1,12 @@
 #!/usr/bin/env node
+/**
+ * Dual-chain mempool dashboard (React/ink).
+ * Polls EVM txpool + Cosmos RPC, renders block/gas/TPS/validator stats.
+ * Also auto-launched by blockchain-spammer.js via --dashboard.
+ *
+ * Usage:
+ *   node tools/mempool-dashboard.js
+ */
 import React, { useState, useEffect } from 'react';
 import { render, Box, Text } from 'ink';
 import { ethers } from 'ethers';

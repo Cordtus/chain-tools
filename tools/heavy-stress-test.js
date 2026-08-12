@@ -44,18 +44,17 @@ if (args.values.list) {
 
 function showHelp() {
   console.log(`
-Heavy Load RPC Stress Testing Tool
+eth_getLogs Load Generation Tool
 
-This tool is designed to generate REAL load on RPC endpoints by querying
-high-activity contracts with scattered data patterns.
+Generates load on RPC endpoints by querying high-activity contracts.
 
-Usage: node heavy-stress-test.js -r <RPC_URL> [OPTIONS]
+Usage: node tools/heavy-stress-test.js -r <RPC_URL> [OPTIONS]
 
 LOAD PROFILES (use -l or --loadProfile):
   light      - Moderate activity contracts
-  medium     - Active contracts with regular traffic  
-  heavy      - Extremely high activity contracts (default)
-  chaos      -  Query ALL contracts (use carefully!)
+  medium     - Active contracts with regular traffic
+  heavy      - High activity contracts (default)
+  chaos      - Query ALL contracts (use carefully!)
 
 LOAD STRATEGIES (use -s or --loadStrategy):
   scatter       - Query all events without filtering (default)
@@ -73,7 +72,7 @@ OPTIONS:
   --maxTests, -m <n>        Maximum test iterations (default: 20)
   --delay, -d <ms>          Delay between requests (default: 500)
   --topics, -t <topics>     Custom topics (comma-separated hex strings)
-  --noAddress, -n           Query without address filter (very heavy!)
+  --noAddress, -n           Query without address filter
   --autoDetect, -a          Auto-detect chain and use recommended contracts
   --verbose, -v             Verbose output with details
   --list                    List all available high-load contracts
@@ -81,27 +80,26 @@ OPTIONS:
 
 EXAMPLES:
 
-  # Auto-detect Ethereum and use heaviest contracts
-  node heavy-stress-test.js -r https://eth.alchemy.com/v2/KEY -a -l heavy
+  # Auto-detect chain and use high-activity contracts
+  node tools/heavy-stress-test.js -r https://eth.alchemy.com/v2/KEY -a -l heavy
 
-  # Polygon with parallel queries on USDC
-  node heavy-stress-test.js -r https://polygon-rpc.com -c 0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174 -p 5
+  # Parallel queries on a specific contract
+  node tools/heavy-stress-test.js -r https://polygon-rpc.com -c 0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174 -p 5
 
-  # Chaos mode - query ALL contracts for Transfer events ( EXTREME LOAD)
-  node heavy-stress-test.js -r https://rpc.url -s chaos -i 10 -m 5
+  # Chaos mode - query ALL contracts for Transfer events
+  node tools/heavy-stress-test.js -r https://rpc.url -s chaos -i 10 -m 5
 
-  # Custom topics for maximum scatter
-  node heavy-stress-test.js -r https://rpc.url -c 0xContract -t 0xddf252ad,0x8c5be1e5
+  # Custom topics
+  node tools/heavy-stress-test.js -r https://rpc.url -c 0xContract -t 0xddf252ad,0x8c5be1e5
 
   # List all available high-load contracts
-  node heavy-stress-test.js --list
+  node tools/heavy-stress-test.js --list
 
 CHAIN DETECTION:
-The tool can auto-detect these chains from RPC URL:
+Auto-detects chain from RPC URL:
 - Ethereum, Polygon, Arbitrum, Base, BSC, Avalanche, Optimism
 
-For each chain, we have pre-configured the highest activity contracts
-that will generate maximum load when queried.
+Each chain has pre-configured high-activity contracts.
   `);
 }
 

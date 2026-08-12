@@ -64,13 +64,13 @@ const config = {
 // Validate required parameters
 if (!config.rpcUrl) {
   console.error(" Error: RPC URL is required. Use --rpcUrl or -r to specify.");
-  console.error("Example: node stress-test.js -r https://eth-mainnet.g.alchemy.com/v2/YOUR-KEY -c 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48");
+  console.error("Example: node tools/stress-test.js -r https://eth-mainnet.g.alchemy.com/v2/YOUR-KEY -c 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48");
   process.exit(1);
 }
 
 if (!config.contractAddress) {
   console.error(" Error: Contract address is required. Use --contractAddress or -c to specify.");
-  console.error("Example: node stress-test.js -r https://eth-mainnet.g.alchemy.com/v2/YOUR-KEY -c 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48");
+  console.error("Example: node tools/stress-test.js -r https://eth-mainnet.g.alchemy.com/v2/YOUR-KEY -c 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48");
   process.exit(1);
 }
 
@@ -79,9 +79,9 @@ let testCount = 0;
 
 function showHelp() {
   console.log(`
-Ethereum RPC Stress Testing Tool - Multi-Chain EVM Compatible
+eth_getLogs RPC Stress Testing Tool
 
-Usage: node stress-test.js -r <RPC_URL> -c <CONTRACT_ADDRESS> [OPTIONS]
+Usage: node tools/stress-test.js -r <RPC_URL> -c <CONTRACT_ADDRESS> [OPTIONS]
 
 REQUIRED:
   --rpcUrl, -r <url>        RPC endpoint URL (required)
@@ -118,28 +118,19 @@ OPTIONS:
   --verbose, -v             Verbose output
   --help, -h                Show this help message
 
-EXAMPLES FOR POPULAR NETWORKS:
+EXAMPLES:
 
-  # Ethereum Mainnet - USDC Contract
-  node stress-test.js -r https://eth-mainnet.g.alchemy.com/v2/YOUR-KEY -c 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48
+  # USDC on Ethereum Mainnet
+  node tools/stress-test.js -r https://eth-mainnet.g.alchemy.com/v2/YOUR-KEY -c 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48
 
-  # Polygon - MATIC Token
-  node stress-test.js -r https://polygon-rpc.com -c 0x0000000000000000000000000000000000001010 -a all
+  # USDC on Polygon, all analysis modes
+  node tools/stress-test.js -r https://polygon-rpc.com -c 0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359 -a all
 
-  # Arbitrum - GMX Token with correlation analysis
-  node stress-test.js -r https://arb1.arbitrum.io/rpc -c 0xfc5A1A6EB076a2C7aD06eD22C90d7E710E35ad0a -a correlation,efficiency
+  # Forward scan from a specific block
+  node tools/stress-test.js -r https://mainnet.base.org -c 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913 -s forward -b 1000000
 
-  # BSC - PancakeSwap with exponential growth
-  node stress-test.js -r https://bsc-dataseed.binance.org -c 0x10ED43C718714eb63d5aA57B78B54704E256024E -g exponential
-
-  # Avalanche - AVAX with trend analysis
-  node stress-test.js -r https://api.avax.network/ext/bc/C/rpc -c 0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7 -a trends
-
-  # Base - Forward scan from specific block
-  node stress-test.js -r https://mainnet.base.org -c 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913 -s forward -b 1000000
-
-  # QuickNode endpoint example (works with any EVM chain)
-  node stress-test.js -r https://YOUR-ENDPOINT.quiknode.pro/YOUR-KEY -c 0xYourContract -m 100 -d 500
+  # Any EVM endpoint
+  node tools/stress-test.js -r https://YOUR-ENDPOINT.quiknode.pro/YOUR-KEY -c 0xYourContract -m 100 -d 500
   `);
 }
 
