@@ -1,9 +1,17 @@
 node_modules/
 .claude/
+
+# secrets
 .env
 .env.*
 !.env.example
 keys.example.json
+
+# internal / development docs (not public-facing)
+CLAUDE.md
+LOAD_TESTING_GUIDE.md
+
+# runtime artifacts
 debug_output.json
 deployment.json
 detailed-metrics-*.json
